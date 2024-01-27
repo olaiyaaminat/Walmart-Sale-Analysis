@@ -24,18 +24,85 @@ The dataset is a  structured tabular dataset capturing sales transactions in a r
 - Rating: The customer satisfaction rating for the transaction.
 
 
-
+#### CODE FOR DISPLAING DATASET
 ```
 SELECT count(distinct(year(date))) 
 FROM walmartsale
 ```
+#### DATASET PREVIEW
+![Screenshot (655)](https://github.com/olaiyaaminat/Walmart-Sale-Analysis/assets/150556677/29d41a80-7e13-45e6-925e-dcd09ff84730)
+
 
 ## DATA SOURCE
 - Dataset can be accessed through the link below (https://github.com/Princekrampah/WalmartSalesAnalysis/blob/master/WalmartSalesData.csv.csv)
   
 ## ANALYTICAL TOOL
-SQL - For loading, cleaning and exploration.
+Microsoft Excel - Data cleaning
+SQL - For loading and exploration.
 
+## DATA PREPARATION AND CLEANING
+#### DATA IMPORTATION
 
+The data was in comma seperated value (.csv) format and was load into the SQL software using the directory. The code below was used to view the dataset for better understanding in the database
 
+---create database
+```
+Create database walmartporfolio
+```
+----view table from database
+```
+select *
+From walmartsale
+```
 
+- Add a new column **timecategory** (morning,afternoon and evening) to give insight on which time of the day most sale were made.
+
+---create timecategory column
+  ```
+select time,
+	case
+	When time BETWEEN '00:00:00'  AND '12:00:00' then 'Morning'
+	When time BETWEEN '12:01:00'  AND '16:00:00' then 'Afternoon'
+	ELSE 'Evening'
+	END AS timecategory
+	From walmartsale
+  ```
+---Alter table walmart
+```
+Alter table walmartsale
+Add timecategory varchar(30)
+```
+----Update the table to include the timecategory column.
+
+```
+update walmartsale
+set timecategory = (
+case
+	When time BETWEEN '00:00:00'  AND '12:00:00' then 'Morning'
+	When time BETWEEN '12:01:00'  AND '16:00:00' then 'Afternoon'
+	ELSE 'Evening'
+	END
+	)
+```
+
+- Add a new column **daysoftheweek** (Monday, Tuesday, Wednesday, Thursday, Friday,Saturday,Sunday) to give insight on days each branch get busy most.
+
+  ---- create column daysoftheweek
+  ```
+  select date,
+	DATENAME(WEEKDAY, date) AS dayoftheweek
+	From walmartsale
+  ```
+
+---Alter table walmart
+```
+Alter table walmartsale
+	Add dayoftheweek varchar(20)
+```
+
+----Update the table to include the daysoftheweek column.
+```
+update walmartsale
+set dayoftheweek = (
+DATENAME(WEEKDAY, date))
+```
