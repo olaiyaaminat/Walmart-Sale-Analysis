@@ -34,11 +34,11 @@ FROM walmartsale
 
 
 ## DATA SOURCE
-- Dataset can be accessed through the link below (https://github.com/Princekrampah/WalmartSalesAnalysis/blob/master/WalmartSalesData.csv.csv)
+- Dataset can be accessed through the link below (https://www.kaggle.com/datasets/alaxcarry/walmart-sales-data)
   
 ## ANALYTICAL TOOL
-Microsoft Excel - Data cleaning
-SQL - For loading and exploration.
+- Microsoft Excel - Data cleaning
+- SQL - For loading and exploration.
 
 ## DATA PREPARATION AND CLEANING
 #### DATA IMPORTATION
