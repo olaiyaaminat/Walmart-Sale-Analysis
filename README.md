@@ -137,15 +137,19 @@ Update walmartsale
 ## How many unique cities those the data have?
 
 ```
-select distinct( city) as uniquecity
+select distinct(city) as uniquecity
 	from walmartsale
 ```
+The output shows Naypyitaw, Yangon and Mandalay as the unique cities.
+
 ##  what is the loctaion of the city in each branch?
 
 ```
 select distinct( city), branch
 	from walmartsale
 ```
+The code shows the location of Naypyitaw is in branch (C), Yangon is in branch (A) & Mandalay in branch (B)
+
 
 ### PRODUCT ANALYSIS
 ## How many unique product line those the data have?
@@ -154,6 +158,7 @@ select distinct( city), branch
 select distinct(Product_line) as uniqueproductline
 	from walmartsale
 ```
+The walamrt data has 6 unique product line.
 
 ## what is the common payment method?
 
@@ -163,6 +168,9 @@ select payment,  count(payment) as common_payment_method
 	group by payment
 	order by common_payment_method desc
 ```
+
+The query revailed Ewallet as the common payment method with 345 transactions.
+
 ## What is the most selling product line ?
 
 ```
@@ -171,6 +179,7 @@ select Product_line, COUNT(Product_line) as common_payment_method
 	group by Product_line
 	order by common_payment_method desc
 ```
+It was deduced fashion accessories is the most selling product line in the business.
 
 ## What is the total revenue by month?
 
@@ -181,6 +190,7 @@ select monthname,
 	group by monthname
 	order by total_revenue desc
 ```
+It can  be deduced that january has a total of (116291.89), February(97219.37 and March (109455.51) revenue. January appear to have the highest total revenue.
 
 ## What month have the largset cogs(cost of goods sold)?
 
@@ -191,6 +201,7 @@ select monthname,
 	group by monthname
 	order by largest_cogs desc
 ```
+The month with the largest cost of goods is January.
 
 ## What product line had the largest revenue?
 
@@ -201,6 +212,7 @@ select product_line,
 	group by product_line
 	order by total_revenue desc
 ```
+The product line with the largest revenue is Food and Beverages.
 
 ## What is the city with the largest revenue?
 
@@ -211,6 +223,7 @@ select city,branch,
 	group by city,branch
 	order by total_revenue desc
 ```
+The city with the largest revenue is Naypyitaw.
 
 ## Which branch sold more products than average product sold?
 
@@ -221,6 +234,7 @@ select branch,
 	group by branch
 	having sum(quantity) > (select avg (quantity) from walmartsale)
 ```
+The bracnch that sold more product is Branch A.
 
 ## What is the most common product line by gender?
 
@@ -232,6 +246,8 @@ select gender, product_line,
 	order by total_count desc
 ```
 
+The common product by gender is Fashion Accessories by female.
+
 ## Average rating of each product line
 
 ```
@@ -241,10 +257,16 @@ select product_line,
 	group by  product_line
 	order by avg_rating  desc
 ```
+The avarage rating of food and beverages is 7.11.
+The avarage rating of fashion accessories is 7.03.
+The avarage rating of Health and Beauty is 7.00.
+The avarage rating of electronic accessories is 6.92.
+The avarage rating of sports and travel is 6.92.
+The avarage rating of Home and Accesories is 6.84.
 
 ### SALE ANALYSIS
 
-## Find number of sales in each time of the day per week
+## Find the number of sales in each time of the day per week.
 
 ```
 select timecategory,
@@ -254,6 +276,8 @@ select timecategory,
 	group by timecategory
 	order by total_sales desc
 ```
+The sales make in the morning is 21,afternoon is 48 and evening is 56
+
 
 ## Which of the customer type brings the most revenue?
 
@@ -264,17 +288,18 @@ select customer_type,
 	group by customer_type
 	order by total_revenue  desc
 ```
+The member brings the most revenue with 164223.44 total revenue.
 
 ## Which city has the largest tax percent?
 
 ```
-
 	select city,
 	round(avg(tax_5),2)  as tax
 	from walmartsale
 	group by city
 	order by tax  desc
 ```
+The city with the largest tax percent is Naypyitaw.
 
 ## Which customer type pays the most in tax?
 
@@ -284,12 +309,8 @@ select customer_type,
 	from walmartsale
 	group by customer_type
 	order by tax  desc
-
 ```
+The customer with the membership pays more tax.
 
-## INSIGHT
 
-## RECOMENDATION
-
-## CONCLUSION
 
